@@ -18,10 +18,23 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $token = Auth::user()->createToken('auth_token')->plainTextToken;
+        $user = Auth::user();
+
+        $user->tokens()->delete();
+
+        $token = $user->createToken('auth_token', ['*'], now()->addMinutes(1440));
+        // return $user->tokens;
         return response()->json([
-            'data' => new UserResource(Auth::user()),
-            'access_token' => $token,
+            'data' => //new UserResource(Auth::user())
+            [
+                'Full Name' => $user->name,
+                'Email' => $user->email,
+                'Image Path' => $user->image,
+                'User Role' => $user->role,
+                'Phone Number' => $user->phone_number,
+                'Address' => $user->address,
+            ],
+            'access_token' => $token->plainTextToken,
         ]);
     }
 }
