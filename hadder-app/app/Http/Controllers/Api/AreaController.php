@@ -32,7 +32,7 @@ class AreaController extends Controller
     {
         $this->authorize('create', Area::class);
 
-        $area = new AreaResource(Area::create($request->except(['user_id'])));
+        $area = new AreaResource(Area::create($request->all()));
         $area->users()->attach($request->user_id);
         return $area->response()->setStatusCode(201);
     }
@@ -58,9 +58,9 @@ class AreaController extends Controller
         $this->authorize('update', $idArea);
 
         $area = new AreaResource(Area::findOrFail($id));
-        $area->update($request->except(['user_id']));
+        $area->update($request->all());
 
-        $area->users()->syncWithoutDetaching($request->user_id);
+        $area->users()->toggle($request->user_id);
 
         return $area->response()->setStatusCode(200);
     }

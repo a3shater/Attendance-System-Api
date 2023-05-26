@@ -32,7 +32,7 @@ class HolidayController extends Controller
     {
         $this->authorize('create', Holiday::class);
 
-        $holiday = new HolidayResource(Holiday::create($request->except(['user_id'])));
+        $holiday = new HolidayResource(Holiday::create($request->all()));
         $holiday->users()->attach($request->user_id);
         return $holiday->response()->setStatusCode(201);
     }
@@ -58,9 +58,9 @@ class HolidayController extends Controller
         $this->authorize('update', $idHoliday);
 
         $holiday = new HolidayResource(Holiday::findOrFail($id));
-        $holiday->update($request->except(['user_id']));
+        $holiday->update($request->all());
 
-        $holiday->users()->syncWithoutDetaching($request->user_id);
+        $holiday->users()->toggle($request->user_id);
 
         return $holiday->response()->setStatusCode(200);
     }

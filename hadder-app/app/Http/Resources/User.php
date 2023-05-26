@@ -20,16 +20,17 @@ class User extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'Full Name' => $this->name,
-            'Email' => $this->email,
-            'Image Path' => $this->image,
-            'User Role' => $this->role,
-            'Phone Number' => $this->phone_number,
-            'Address' => $this->address,
-            'Area' => AreaResource::collection($this->areas),
-            'Attendance' => AttendanceResource::collection($this->attendances),
-            'Holidays' => HolidayResource::collection($this->holidays),
-            'Shifts' => ShiftResource::collection($this->shifts),
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'image' => $this->image,
+            'role' => $this->role,
+            'phone_number' => $this->phone_number,
+            'address' => $this->address,
+            'areas' => AreaResource::collection($this->areas),
+            'attendances' => AttendanceResource::collection($this->attendances),
+            'holidays' => HolidayResource::collection($this->holidays),
+            'shifts' => ShiftResource::collection($this->shifts),
         ];
     }
 }

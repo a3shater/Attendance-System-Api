@@ -15,8 +15,9 @@ class Attendance extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'Attendance Time' => $this->attendance_time,
-            'Attendance State' => $this->attendance_state
+            'id' => $this->attendance_time,
+            'attendance_time' => $this->attendance_time,
+            'attendance_state' => $this->attendance_state
         ];
     }
 }

@@ -15,11 +15,12 @@ class Company extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'Company Name' => $this->name,
-            'Address' => $this->address,
-            'Phone Number' => $this->phone_number,
-            'Email' => $this->email,
-            'Logo' => $this->image
+            'id' => $this->id,
+            'name' => $this->name,
+            'address' => $this->address,
+            'phone_number' => $this->phone_number,
+            'email' => $this->email,
+            'image' => $this->image
         ];
     }
 }

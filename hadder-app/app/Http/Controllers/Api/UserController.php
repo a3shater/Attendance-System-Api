@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        $data = $request->except(['shift_id', 'holiday_id', 'area_id']);
+        $data = $request->all();
         if ($request->hasFile('image')) {
             $data['image'] = $request->image->store('users');
         }
@@ -71,7 +71,7 @@ class UserController extends Controller
         $idUser = User::findOrFail($id);
         $this->authorize('update', $idUser);
 
-        $data = $request->except(['shift_id', 'holiday_id', 'area_id']);
+        $data = $request->all();
         if ($request->hasFile('image')) {
             $data['image'] = $request->image->store('users');
         }
@@ -82,12 +82,11 @@ class UserController extends Controller
 
         $user->update($data);
 
-        $user->shifts()->syncWithoutDetaching($request->shift_id);
+        $user->shifts()->toggle($request->shift_id);
 
-        // $areasId=$user->areas->pluck('id');
-        $user->areas()->syncWithoutDetaching($request->area_id); //
+        $user->areas()->toggle($request->area_id);
 
-        $user->holidays()->syncWithoutDetaching($request->holiday_id);
+        $user->holidays()->toggle($request->holiday_id);
 
         return $user->response()->setStatusCode(200);
     }

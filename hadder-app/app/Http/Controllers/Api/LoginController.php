@@ -25,14 +25,15 @@ class LoginController extends Controller
         $token = $user->createToken('auth_token', ['*'], now()->addMinutes(1440));
         // return $user->tokens;
         return response()->json([
-            'data' => //new UserResource(Auth::user())
+            'data' =>
             [
-                'Full Name' => $user->name,
-                'Email' => $user->email,
-                'Image Path' => $user->image,
-                'User Role' => $user->role,
-                'Phone Number' => $user->phone_number,
-                'Address' => $user->address,
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'image' => $user->image,
+                'role' => $user->role,
+                'phone_number' => $user->phone_number,
+                'address' => $user->address,
             ],
             'access_token' => $token->plainTextToken,
         ]);

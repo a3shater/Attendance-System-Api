@@ -26,10 +26,11 @@ class RelationshipController extends Controller
         $attrs = array();
         $shifts = array();
         foreach ($user as $ourShifts) {
-            $attrs['Shift Name'] = $ourShifts->name;
-            $attrs['Shift Start'] = $ourShifts->start_period;
-            $attrs['Shift Period'] = $ourShifts->period;
-            $attrs['Grace Period'] = $ourShifts->grace_period;
+            $attrs['id'] = $ourShifts->id;
+            $attrs['name'] = $ourShifts->name;
+            $attrs['start_period'] = $ourShifts->start_period;
+            $attrs['period'] = $ourShifts->period;
+            $attrs['grace_period'] = $ourShifts->grace_period;
             $shifts[] = $attrs;
         }
         return response()->json(['data' => $shifts], 200);
@@ -44,8 +45,9 @@ class RelationshipController extends Controller
         $attrs = array();
         $holidays = array();
         foreach ($user as $ourHolidays) {
-            $attrs['Holiday Name'] = $ourHolidays->name;
-            $attrs['Holiday Date'] = $ourHolidays->holiday_date;
+            $attrs['id'] = $ourHolidays->id;
+            $attrs['name'] = $ourHolidays->name;
+            $attrs['holiday_date'] = $ourHolidays->holiday_date;
             $holidays[] = $attrs;
         }
         return response()->json(['data' => $holidays], 200);
@@ -60,8 +62,9 @@ class RelationshipController extends Controller
         $attrs = array();
         $attendances = array();
         foreach ($user as $ourAttendances) {
-            $attrs['Attendance Time'] = $ourAttendances->attendance_time;
-            $attrs['Attendance State'] = $ourAttendances->attendance_state;
+            $attrs['id'] = $ourAttendances->id;
+            $attrs['attendance_time'] = $ourAttendances->attendance_time;
+            $attrs['attendance_state'] = $ourAttendances->attendance_state;
             $attendances[] = $attrs;
         }
         return response()->json(['data' => $attendances], 200);
@@ -76,9 +79,11 @@ class RelationshipController extends Controller
         $attrs = array();
         $areas = array();
         foreach ($user as $ourAreas) {
-            $attrs['Area Name'] = $ourAreas->name;
-            $attrs['Latitude'] = $ourAreas->latitude;
-            $attrs['Longitude'] = $ourAreas->longitude;
+            $attrs['id'] = $ourAreas->id;
+            $attrs['name'] = $ourAreas->name;
+            $attrs['latitude'] = $ourAreas->latitude;
+            $attrs['longitude'] = $ourAreas->longitude;
+            $attrs['company'] = $ourAreas->company->name;
             $areas[] = $attrs;
         }
         return response()->json(['data' => $areas], 200);
@@ -94,12 +99,13 @@ class RelationshipController extends Controller
         $attrs = array();
         $users = array();
         foreach ($shift as $ourUsers) {
-            $attrs['Full Name'] = $ourUsers->name;
-            $attrs['Email'] = $ourUsers->email;
-            $attrs['Image Path'] = $ourUsers->image;
-            $attrs['User Role'] = $ourUsers->role;
-            $attrs['Phone Number'] = $ourUsers->phone_number;
-            $attrs['Address'] = $ourUsers->address;
+            $attrs['id'] = $ourUsers->id;
+            $attrs['name'] = $ourUsers->name;
+            $attrs['email'] = $ourUsers->email;
+            $attrs['image'] = $ourUsers->image;
+            $attrs['role'] = $ourUsers->role;
+            $attrs['phone_number'] = $ourUsers->phone_number;
+            $attrs['address'] = $ourUsers->address;
             $users[] = $attrs;
         }
         return response()->json(['data' => $users], 200);
@@ -114,12 +120,13 @@ class RelationshipController extends Controller
         $attrs = array();
         $users = array();
         foreach ($holiday as $ourUsers) {
-            $attrs['Full Name'] = $ourUsers->name;
-            $attrs['Email'] = $ourUsers->email;
-            $attrs['Image Path'] = $ourUsers->image;
-            $attrs['User Role'] = $ourUsers->role;
-            $attrs['Phone Number'] = $ourUsers->phone_number;
-            $attrs['Address'] = $ourUsers->address;
+            $attrs['id'] = $ourUsers->id;
+            $attrs['name'] = $ourUsers->name;
+            $attrs['email'] = $ourUsers->email;
+            $attrs['image'] = $ourUsers->image;
+            $attrs['role'] = $ourUsers->role;
+            $attrs['phone_number'] = $ourUsers->phone_number;
+            $attrs['address'] = $ourUsers->address;
             $users[] = $attrs;
         }
         return response()->json(['data' => $users], 200);
@@ -134,12 +141,13 @@ class RelationshipController extends Controller
         $attrs = array();
         $users = array();
         foreach ($area as $ourUsers) {
-            $attrs['Full Name'] = $ourUsers->name;
-            $attrs['Email'] = $ourUsers->email;
-            $attrs['Image Path'] = $ourUsers->image;
-            $attrs['User Role'] = $ourUsers->role;
-            $attrs['Phone Number'] = $ourUsers->phone_number;
-            $attrs['Address'] = $ourUsers->address;
+            $attrs['id'] = $ourUsers->id;
+            $attrs['name'] = $ourUsers->name;
+            $attrs['email'] = $ourUsers->email;
+            $attrs['image'] = $ourUsers->image;
+            $attrs['role'] = $ourUsers->role;
+            $attrs['phone_number'] = $ourUsers->phone_number;
+            $attrs['address'] = $ourUsers->address;
             $users[] = $attrs;
         }
         return response()->json(['data' => $users], 200);

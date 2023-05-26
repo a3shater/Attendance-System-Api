@@ -33,7 +33,7 @@ class ShiftController extends Controller
     {
         $this->authorize('create', Shift::class);
 
-        $shift = new ShiftResource(Shift::create($request->except(['user_id'])));
+        $shift = new ShiftResource(Shift::create($request->all()));
         $shift->users()->attach($request->user_id);
         return $shift->response()->setStatusCode(201);
     }
@@ -59,9 +59,9 @@ class ShiftController extends Controller
         $this->authorize('update', $idShift);
 
         $shift = new ShiftResource(Shift::findOrFail($id));
-        $shift->update($request->except(['user_id']));
+        $shift->update($request->all());
 
-        $shift->users()->syncWithoutDetaching($request->user_id);
+        $shift->users()->toggle($request->user_id);
 
         return $shift->response()->setStatusCode(200);
     }

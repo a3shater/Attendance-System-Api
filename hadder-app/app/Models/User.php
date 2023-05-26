@@ -50,7 +50,7 @@ class User extends Authenticatable
     public function shifts()
     {
         // return $this->belongsToMany(Shift::class);
-        return $this->belongsToMany('App\Models\Shift');
+        return $this->belongsToMany('App\Models\Shift')->withTimestamps();
     }
 
     public function attendances()
@@ -61,11 +61,11 @@ class User extends Authenticatable
 
     public function holidays()
     {
-        return $this->belongsToMany(Holiday::class);
+        return $this->belongsToMany(Holiday::class)->withTimestamps();
     }
 
     public function areas()
     {
-        return $this->belongsToMany(Area::class);
+        return $this->belongsToMany(Area::class)->withTimestamps();
     }
 }

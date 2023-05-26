@@ -15,8 +15,10 @@ class Holiday extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'Holiday Name' => $this->name,
-            'Holiday Date' => $this->holiday_date
+
+            'id' => $this->id,
+            'name' => $this->name,
+            'holiday_id' => $this->holiday_date
         ];
     }
 }

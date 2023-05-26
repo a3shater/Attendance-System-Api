@@ -15,10 +15,11 @@ class Shift extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'Shift Name' => $this->name,
-            'Shift Start' => $this->start_period,
-            'Shift Period' => $this->period,
-            'Grace Period' => $this->grace_period
+            'id' => $this->id,
+            'name' => $this->name,
+            'start_period' => $this->start_period,
+            'period' => $this->period,
+            'grace_period' => $this->grace_period
         ];
     }
 }

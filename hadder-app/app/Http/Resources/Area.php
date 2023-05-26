@@ -15,10 +15,12 @@ class Area extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'The Company' => $this->company->name,
-            'Area Name' => $this->name,
-            'Latitude' => $this->latitude,
-            'Longitude' => $this->longitude
+
+            'id' => $this->id,
+            'name' => $this->name,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'The Company' => $this->company->name
         ];
     }
 }
