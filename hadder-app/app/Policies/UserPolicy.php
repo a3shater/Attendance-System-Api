@@ -42,7 +42,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->role === "admin"
+        return $user->role === "admin" || $user->id === $model->id
             ? Response::allow()
             : Response::deny('do not have permission');
     }
